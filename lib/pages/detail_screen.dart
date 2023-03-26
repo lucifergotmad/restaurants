@@ -90,6 +90,20 @@ class DetailScreen extends StatelessWidget {
                   restaurant.description,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
+                const SizedBox(
+                  height: 16,
+                ),
+                FoodList(
+                  foods: restaurant.menus.foods,
+                  labelText: "Foods",
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                FoodList(
+                  foods: restaurant.menus.drinks,
+                  labelText: "Drinks",
+                )
               ],
             ),
           ),
