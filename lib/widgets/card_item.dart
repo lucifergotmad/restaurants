@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurants/data/api/api_services.dart';
 import 'package:restaurants/data/model/restaurant.dart';
+import 'package:restaurants/generated/assets.dart';
 import 'package:restaurants/pages/detail_screen.dart';
 
 class CardItem extends StatelessWidget {
@@ -29,6 +30,13 @@ class CardItem extends StatelessWidget {
                     child: Image.network(
                       "${ApiService.baseUrl}/images/small/${restaurant.pictureId}",
                       fit: BoxFit.cover,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        return Image.asset(
+                          Assets.imagesError,
+                          fit: BoxFit.cover,
+                        );
+                      },
                     ),
                   ),
                 ),

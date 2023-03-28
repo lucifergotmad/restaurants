@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurants/data/api/api_services.dart';
 import 'package:restaurants/data/result_state.dart';
+import 'package:restaurants/generated/assets.dart';
 import 'package:restaurants/provider/restaurant_detail_provider.dart';
 import 'package:restaurants/widgets/food_list.dart';
 
@@ -33,9 +34,17 @@ class DetailScreen extends StatelessWidget {
                       pinned: true,
                       flexibleSpace: FlexibleSpaceBar(
                         background: Image.network(
-                          "${ApiService.baseUrl}/images/medium/${snapshot.response.restaurant.pictureId}",
-                          fit: BoxFit.cover,
-                        ),
+                            "${ApiService.baseUrl}/images/medium/${snapshot.response.restaurant.pictureId}",
+                            fit: BoxFit.cover, errorBuilder: (
+                          BuildContext context,
+                          Object exception,
+                          StackTrace? stackTrace,
+                        ) {
+                          return Image.asset(
+                            Assets.imagesError,
+                            fit: BoxFit.cover,
+                          );
+                        }),
                       ),
                     )
                   ];

@@ -5,6 +5,7 @@ class Assets {
   static const String apiApiServices = 'lib/data/api/api_services.dart';
   static const String dataResultState = 'lib/data/result_state.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
+  static const String imagesError = 'assets/images/error.jpg';
   static const String imagesNoConnection = 'assets/images/no_connection.png';
   static const String libMain = 'lib/main.dart';
   static const String modelCategory = 'lib/data/model/category.dart';
