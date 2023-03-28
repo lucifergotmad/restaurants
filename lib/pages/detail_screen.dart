@@ -43,7 +43,7 @@ class DetailScreen extends StatelessWidget {
                 body: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 32),
+                        horizontal: 16, vertical: 24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -58,6 +58,7 @@ class DetailScreen extends StatelessWidget {
                           height: 8,
                         ),
                         Row(
+                          mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
@@ -65,13 +66,26 @@ class DetailScreen extends StatelessWidget {
                                 const Icon(
                                   Icons.location_on,
                                   color: Colors.black54,
+                                  size: 24,
                                 ),
                                 const SizedBox(
-                                  width: 8,
+                                  width: 16,
                                 ),
-                                Text(
-                                  snapshot.response.restaurant.city,
-                                  style: Theme.of(context).textTheme.labelLarge,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      snapshot.response.restaurant.city,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge,
+                                    ),
+                                    Text(
+                                      snapshot.response.restaurant.address,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    )
+                                  ],
                                 )
                               ],
                             ),
@@ -97,7 +111,10 @@ class DetailScreen extends StatelessWidget {
                         ),
                         Text(
                           "Description",
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
                           height: 8,
@@ -105,6 +122,16 @@ class DetailScreen extends StatelessWidget {
                         Text(
                           snapshot.response.restaurant.description,
                           style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Text(
+                          "Menu",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
                           height: 16,
@@ -119,7 +146,7 @@ class DetailScreen extends StatelessWidget {
                         FoodList(
                           foods: snapshot.response.restaurant.menus.drinks,
                           labelText: "Drinks",
-                        )
+                        ),
                       ],
                     ),
                   ),

@@ -14,15 +14,16 @@ class FoodList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          labelText,
-          style: Theme.of(context).textTheme.titleMedium,
+          "$labelText :",
+          style: Theme.of(context).textTheme.labelMedium,
         ),
         const SizedBox(
           height: 8,
         ),
-        SizedBox(
-          height: 80,
+        ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 40, maxHeight: 50),
           child: ListView.separated(
+            shrinkWrap: true,
             separatorBuilder: (context, index) {
               return const SizedBox(
                 width: 8,
@@ -34,19 +35,19 @@ class FoodList extends StatelessWidget {
               return Container(
                 width: 100,
                 decoration: BoxDecoration(
-                  color: Colors.white10,
+                  color: Theme.of(context).colorScheme.primary,
                   border: Border.all(color: Colors.black12),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                     child: Text(
                       food.name,
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge
-                          ?.copyWith(color: Colors.orangeAccent, fontSize: 12),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontSize: 12),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
