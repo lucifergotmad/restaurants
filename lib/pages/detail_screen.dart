@@ -108,7 +108,7 @@ class DetailScreen extends StatelessWidget {
                         ),
                         FoodList(
                           foods:
-                              snapshot.response.restaurant.menus?.foods ?? [],
+                              snapshot.response.restaurant.menus.foods,
                           labelText: "Foods",
                         ),
                         const SizedBox(
@@ -116,7 +116,7 @@ class DetailScreen extends StatelessWidget {
                         ),
                         FoodList(
                           foods:
-                              snapshot.response.restaurant.menus?.drinks ?? [],
+                              snapshot.response.restaurant.menus.drinks,
                           labelText: "Drinks",
                         )
                       ],
