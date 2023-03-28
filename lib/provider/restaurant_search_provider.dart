@@ -31,7 +31,6 @@ class RestaurantSearchProvider extends ChangeNotifier {
       notifyListeners();
 
       final restaurants = await apiService.searchRestaurant(query);
-      print("searchRestaurant: $restaurants");
       if (restaurants.founded < 1) {
         _state = ResultState.noData;
         notifyListeners();

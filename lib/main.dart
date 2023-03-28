@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   final NetworkConnectivity _networkConnectivity = NetworkConnectivity.instance;
   Map<ConnectivityResult, bool> _result = {ConnectivityResult.none: true};
 
-  bool _isOnline = false;
+  bool _isOnline = true;
 
   @override
   void initState() {
@@ -30,22 +30,27 @@ class _MyAppState extends State<MyApp> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
+
+    _checkConnectivity();
+  }
+
+  void _checkConnectivity() {
     _networkConnectivity.initialise();
     _networkConnectivity.myStream.listen((event) {
       _result = event;
 
-      switch (_result.keys.first) {
-        case ConnectivityResult.mobile:
-        case ConnectivityResult.wifi:
+      switch (_result.values.first) {
+        case false:
+          setState(() {
+            _isOnline = false;
+          });
+          break;
+        case true:
           setState(() {
             _isOnline = true;
           });
           break;
-        case ConnectivityResult.none:
         default:
-          setState(() {
-            _isOnline = false;
-          });
       }
     });
   }
@@ -77,8 +82,14 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: HomeScreen.routeName,
       routes: {
-        HomeScreen.routeName: (context) => HomeScreen(isOnline: _isOnline),
-        SearchScreen.routeName: (context) => SearchScreen(isOnline: _isOnline),
+        HomeScreen.routeName: (context) => HomeScreen(
+              isOnline: _isOnline,
+              checkConnectivity: _checkConnectivity,
+            ),
+        SearchScreen.routeName: (context) => SearchScreen(
+              isOnline: _isOnline,
+              checkConnectivity: _checkConnectivity,
+            ),
         DetailScreen.routeName: (context) => DetailScreen(
               id: ModalRoute.of(context)?.settings.arguments as String,
               isOnline: _isOnline,

@@ -9,8 +9,11 @@ class SearchScreen extends StatelessWidget {
   static const routeName = "/search";
 
   final bool isOnline;
+  final Function checkConnectivity;
 
-  const SearchScreen({Key? key, required this.isOnline}) : super(key: key);
+  const SearchScreen(
+      {Key? key, required this.isOnline, required this.checkConnectivity})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +78,9 @@ class SearchScreen extends StatelessWidget {
                     ],
                   ),
                 )
-              : const ErrorPage(),
+              : ErrorPage(
+                  checkConnectivity: checkConnectivity,
+                ),
         ),
       ),
     );
