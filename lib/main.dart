@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurants/pages/detail_screen.dart';
 import 'package:restaurants/pages/home_screen.dart';
-import 'package:restaurants/data/model/restaurant.dart';
+import 'package:restaurants/pages/search_screen.dart';
 import 'package:restaurants/shared/themes.dart';
 import 'package:restaurants/utils/network_connectivity.dart';
 import 'package:flutter/services.dart';
@@ -43,6 +43,9 @@ class _MyAppState extends State<MyApp> {
           break;
         case ConnectivityResult.none:
         default:
+          setState(() {
+            _isOnline = false;
+          });
       }
     });
   }
@@ -75,10 +78,11 @@ class _MyAppState extends State<MyApp> {
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(isOnline: _isOnline),
+        SearchScreen.routeName: (context) => SearchScreen(isOnline: _isOnline),
         DetailScreen.routeName: (context) => DetailScreen(
-              id:
-                  ModalRoute.of(context)?.settings.arguments as String,
-            )
+              id: ModalRoute.of(context)?.settings.arguments as String,
+              isOnline: _isOnline,
+            ),
       },
     );
   }

@@ -7,9 +7,12 @@ import 'package:restaurants/widgets/food_list.dart';
 
 class DetailScreen extends StatelessWidget {
   static const routeName = "/detail";
-  final String id;
 
-  const DetailScreen({Key? key, required this.id}) : super(key: key);
+  final String id;
+  final bool isOnline;
+
+  const DetailScreen({Key? key, required this.id, required this.isOnline})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -107,16 +110,14 @@ class DetailScreen extends StatelessWidget {
                           height: 16,
                         ),
                         FoodList(
-                          foods:
-                              snapshot.response.restaurant.menus.foods,
+                          foods: snapshot.response.restaurant.menus.foods,
                           labelText: "Foods",
                         ),
                         const SizedBox(
                           height: 16,
                         ),
                         FoodList(
-                          foods:
-                              snapshot.response.restaurant.menus.drinks,
+                          foods: snapshot.response.restaurant.menus.drinks,
                           labelText: "Drinks",
                         )
                       ],
