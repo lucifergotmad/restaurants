@@ -76,8 +76,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(isOnline: _isOnline),
         DetailScreen.routeName: (context) => DetailScreen(
-              restaurant:
-                  ModalRoute.of(context)?.settings.arguments as Restaurant,
+              id:
+                  ModalRoute.of(context)?.settings.arguments as String,
             )
       },
     );

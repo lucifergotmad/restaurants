@@ -19,6 +19,9 @@ class RestaurantResponse {
         message: json["message"],
         count: json["count"],
         restaurants: List<Restaurant>.from(
-            json["restaurants"].map((x) => Restaurant.fromJson(x))),
+          json["restaurants"].map(
+            (x) => Restaurant.fromJson(x),
+          ),
+        ),
       );
 }
