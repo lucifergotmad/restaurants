@@ -1,19 +1,3 @@
-import 'package:restaurants/model/menu.dart';
-
-import 'dart:convert';
-
-List<Restaurant> restaurantFromJson(String? str) {
-  if (str == null) {
-    return [];
-  } else {
-    return List<Restaurant>.from(
-        json.decode(str).map((x) => Restaurant.fromJson(x)));
-  }
-}
-
-String restaurantToJson(List<Restaurant> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class Restaurant {
   Restaurant({
     required this.id,
@@ -22,7 +6,6 @@ class Restaurant {
     required this.pictureId,
     required this.city,
     required this.rating,
-    required this.menus,
   });
 
   final String id;
@@ -31,7 +14,6 @@ class Restaurant {
   final String pictureId;
   final String city;
   final double rating;
-  final Menus menus;
 
   factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
         id: json["id"],
@@ -40,7 +22,6 @@ class Restaurant {
         pictureId: json["pictureId"],
         city: json["city"],
         rating: json["rating"]?.toDouble(),
-        menus: Menus.fromJson(json["menus"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -50,6 +31,5 @@ class Restaurant {
         "pictureId": pictureId,
         "city": city,
         "rating": rating,
-        "menus": menus.toJson(),
       };
 }

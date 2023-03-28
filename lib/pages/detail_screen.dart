@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:restaurants/model/restaurant.dart';
+import 'package:restaurants/data/model/restaurant.dart';
 import 'package:restaurants/widgets/food_list.dart';
 
 class DetailScreen extends StatelessWidget {
+  static const routeName = "/detail";
   final Restaurant restaurant;
 
   const DetailScreen({Key? key, required this.restaurant}) : super(key: key);
@@ -27,7 +28,7 @@ class DetailScreen extends StatelessWidget {
         },
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -93,17 +94,17 @@ class DetailScreen extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                FoodList(
-                  foods: restaurant.menus.foods,
-                  labelText: "Foods",
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                FoodList(
-                  foods: restaurant.menus.drinks,
-                  labelText: "Drinks",
-                )
+                // FoodList(
+                //   foods: restaurant.menus.foods,
+                //   labelText: "Foods",
+                // ),
+                // const SizedBox(
+                //   height: 16,
+                // ),
+                // FoodList(
+                //   foods: restaurant.menus.drinks,
+                //   labelText: "Drinks",
+                // )
               ],
             ),
           ),

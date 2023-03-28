@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurants/model/food.dart';
+import 'package:restaurants/data/model/food.dart';
 
 class FoodList extends StatelessWidget {
   final String labelText;

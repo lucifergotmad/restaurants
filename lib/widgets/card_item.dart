@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurants/model/restaurant.dart';
+import 'package:restaurants/data/api/api_services.dart';
+import 'package:restaurants/data/model/restaurant.dart';
 
 class CardItem extends StatelessWidget {
   final Restaurant restaurant;
@@ -24,7 +25,7 @@ class CardItem extends StatelessWidget {
                   child: SizedBox(
                     height: 120,
                     child: Image.network(
-                      restaurant.pictureId,
+                      "${ApiService.baseUrl}/images/small/${restaurant.pictureId}",
                       fit: BoxFit.cover,
                     ),
                   ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restaurants/generated/assets.dart';
-import 'package:restaurants/model/restaurant.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurants/data/result_state.dart';
+import 'package:restaurants/data/model/restaurant.dart';
+import 'package:restaurants/provider/restaurant_provider.dart';
 import 'package:restaurants/widgets/card_item.dart';
 
 class CardList extends StatelessWidget {
@@ -8,20 +10,30 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-        future: DefaultAssetBundle.of(context)
-            .loadString(Assets.assetsLocalRestaurant),
-        builder: (context, snapshot) {
-          final List<Restaurant> listRestaurant =
-              restaurantFromJson(snapshot.data);
-
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              final Restaurant restaurant = listRestaurant[index];
-              return CardItem(restaurant: restaurant);
-            },
-            itemCount: listRestaurant.length,
-          );
-        });
+    return Consumer<RestaurantProvider>(builder: (context, snapshot, _) {
+      if (snapshot.state == ResultState.loading) {
+        return const Center(child: CircularProgressIndicator());
+      } else if (snapshot.state == ResultState.hasData) {
+        return ListView.builder(
+          itemBuilder: (context, index) {
+            final Restaurant restaurant = snapshot.response.restaurants[index];
+            return CardItem(restaurant: restaurant);
+          },
+          itemCount: snapshot.response.restaurants.length,
+        );
+      } else if (snapshot.state == ResultState.noData) {
+        return Center(
+          child: Text(snapshot.message),
+        );
+      } else if (snapshot.state == ResultState.error) {
+        return Center(
+          child: Text(snapshot.message),
+        );
+      } else {
+        return const Center(
+          child: Text(''),
+        );
+      }
+    });
   }
 }

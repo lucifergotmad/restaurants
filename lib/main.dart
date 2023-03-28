@@ -1,12 +1,11 @@
-import 'dart:ffi';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurants/pages/detail_screen.dart';
 import 'package:restaurants/pages/home_screen.dart';
-import 'package:restaurants/model/restaurant.dart';
+import 'package:restaurants/data/model/restaurant.dart';
 import 'package:restaurants/shared/themes.dart';
 import 'package:restaurants/utils/network_connectivity.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +27,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     _networkConnectivity.initialise();
     _networkConnectivity.myStream.listen((event) {
       _result = event;
@@ -48,6 +50,12 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     super.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     _networkConnectivity.disposeStream();
   }
 
@@ -56,14 +64,18 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: primaryColor,
+              secondary: secondaryColor,
+              onPrimary: onPrimaryColor,
+            ),
         textTheme: textTheme,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: "/",
+      initialRoute: HomeScreen.routeName,
       routes: {
-        "/": (context) => HomeScreen(isOnline: _isOnline),
-        "/detail": (context) => DetailScreen(
+        HomeScreen.routeName: (context) => HomeScreen(isOnline: _isOnline),
+        DetailScreen.routeName: (context) => DetailScreen(
               restaurant:
                   ModalRoute.of(context)?.settings.arguments as Restaurant,
             )

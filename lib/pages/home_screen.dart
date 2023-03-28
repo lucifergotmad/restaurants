@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurants/data/api/api_services.dart';
+import 'package:restaurants/provider/restaurant_provider.dart';
 import 'package:restaurants/widgets/card_list.dart';
 import 'package:restaurants/widgets/error_page.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const routeName = "/";
   final bool isOnline;
 
   const HomeScreen({Key? key, required this.isOnline}) : super(key: key);
@@ -37,7 +41,14 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 32,
                     ),
-                    const Expanded(child: CardList()),
+                    Expanded(
+                      child: ChangeNotifierProvider<RestaurantProvider>(
+                        create: (_) => RestaurantProvider(
+                          apiService: ApiService(),
+                        ),
+                        child: const CardList(),
+                      ),
+                    ),
                   ],
                 )
               : const ErrorPage(),

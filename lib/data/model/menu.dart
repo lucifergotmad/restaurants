@@ -1,4 +1,4 @@
-import 'package:restaurants/model/food.dart';
+import 'package:restaurants/data/model/food.dart';
 
 class Menus {
   Menus({

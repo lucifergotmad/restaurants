@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const Color primaryColor = Colors.orange;
+const Color secondaryColor = Colors.deepPurple;
+const Color onPrimaryColor = Colors.white;
+
 final TextTheme textTheme = TextTheme(
   displayLarge: GoogleFonts.poppins(
     fontSize: 93,
