@@ -3,5 +3,6 @@ class Assets {
   Assets._();
 
   static const String assetsLocalRestaurant = 'assets/local_restaurant.json';
+  static const String imagesNoConnection = 'assets/images/no_connection.png';
 
 }
