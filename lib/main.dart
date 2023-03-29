@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurants/data/api/api_services.dart';
+import 'package:restaurants/data/db/database.dart';
 import 'package:restaurants/data/preferences/preferences_helper.dart';
 import 'package:restaurants/pages/detail_screen.dart';
 import 'package:restaurants/pages/home_screen.dart';
@@ -23,6 +24,7 @@ import 'package:flutter/services.dart';
 import 'package:restaurants/utils/notification_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+late final AppDatabase database;
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
@@ -31,6 +33,8 @@ void main() async {
 
   final NotificationHelper notificationHelper = NotificationHelper();
   final BackgroundService service = BackgroundService();
+
+  database = await $FloorAppDatabase.databaseBuilder('restaurant.db').build();
 
   service.initializeIsolate();
 

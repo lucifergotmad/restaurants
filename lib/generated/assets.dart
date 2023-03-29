@@ -2,41 +2,7 @@
 class Assets {
   Assets._();
 
-  static const String apiApiServices = 'lib/data/api/api_services.dart';
-  static const String dataResultState = 'lib/data/result_state.dart';
-  static const String generatedAssets = 'lib/generated/assets.dart';
   static const String imagesError = 'assets/images/error.jpg';
   static const String imagesNoConnection = 'assets/images/no_connection.png';
-  static const String libMain = 'lib/main.dart';
-  static const String modelCategory = 'lib/data/model/category.dart';
-  static const String modelCustomerReview = 'lib/data/model/customer_review.dart';
-  static const String modelFood = 'lib/data/model/food.dart';
-  static const String modelMenu = 'lib/data/model/menu.dart';
-  static const String modelRestaurant = 'lib/data/model/restaurant.dart';
-  static const String modelRestaurantDetail = 'lib/data/model/restaurant_detail.dart';
-  static const String pagesDetailScreen = 'lib/pages/detail_screen.dart';
-  static const String pagesHomeScreen = 'lib/pages/home_screen.dart';
-  static const String pagesSearchScreen = 'lib/pages/search_screen.dart';
-  static const String pagesSettingScreen = 'lib/pages/setting_screen.dart';
-  static const String preferencesPreferencesHelper = 'lib/data/preferences/preferences_helper.dart';
-  static const String providerRestaurantDetailProvider = 'lib/provider/restaurant_detail_provider.dart';
-  static const String providerRestaurantProvider = 'lib/provider/restaurant_provider.dart';
-  static const String providerRestaurantSearchProvider = 'lib/provider/restaurant_search_provider.dart';
-  static const String providerSchedulingProvider = 'lib/provider/scheduling_provider.dart';
-  static const String providerSettingPreferencesProvider = 'lib/provider/setting_preferences_provider.dart';
-  static const String responseRestaurantDetailResponse = 'lib/data/api/response/restaurant_detail_response.dart';
-  static const String responseRestaurantResponse = 'lib/data/api/response/restaurant_response.dart';
-  static const String responseRestaurantSearchResponse = 'lib/data/api/response/restaurant_search_response.dart';
-  static const String sharedNavigation = 'lib/shared/navigation.dart';
-  static const String sharedThemes = 'lib/shared/themes.dart';
-  static const String utilsBackgroundService = 'lib/utils/background_service.dart';
-  static const String utilsDatetimeHelper = 'lib/utils/date_time_helper.dart';
-  static const String utilsNetworkConnectivity = 'lib/utils/network_connectivity.dart';
-  static const String utilsNotificationHelper = 'lib/utils/notification_helper.dart';
-  static const String widgetsCardItem = 'lib/widgets/card_item.dart';
-  static const String widgetsCardList = 'lib/widgets/card_list.dart';
-  static const String widgetsErrorPage = 'lib/widgets/error_page.dart';
-  static const String widgetsFoodList = 'lib/widgets/food_list.dart';
-  static const String widgetsSearchList = 'lib/widgets/search_list.dart';
 
 }

@@ -1,3 +1,7 @@
+
+import 'package:floor/floor.dart';
+
+@entity
 class Restaurant {
   Restaurant({
     required this.id,
@@ -8,6 +12,7 @@ class Restaurant {
     required this.rating,
   });
 
+  @primaryKey
   final String id;
   final String name;
   final String description;
