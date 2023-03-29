@@ -46,6 +46,7 @@ dependencies:
   intl: ^0.18.0
   sqflite: ^2.2.6
   floor: ^1.4.1
+  mockito: ^5.4.0
 
 dev_dependencies:
   flutter_test:

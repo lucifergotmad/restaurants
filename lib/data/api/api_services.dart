@@ -6,9 +6,12 @@ import 'dart:convert';
 
 class ApiService {
   static const String baseUrl = "https://restaurant-api.dicoding.dev";
+  final http.Client client;
+
+  ApiService(this.client);
 
   Future<RestaurantResponse> getListRestaurant() async {
-    final response = await http.get(Uri.parse("$baseUrl/list"));
+    final response = await client.get(Uri.parse("$baseUrl/list"));
     if (response.statusCode == 200) {
       return RestaurantResponse.fromJson(json.decode(response.body));
     } else {
@@ -17,7 +20,7 @@ class ApiService {
   }
 
   Future<RestaurantDetailResponse> getDetailRestaurant(String id) async {
-    final response = await http.get(Uri.parse("$baseUrl/detail/$id"));
+    final response = await client.get(Uri.parse("$baseUrl/detail/$id"));
     if (response.statusCode == 200) {
       return RestaurantDetailResponse.fromJson(json.decode(response.body));
     } else {
@@ -26,7 +29,7 @@ class ApiService {
   }
 
   Future<RestaurantSearchResponse> searchRestaurant(String query) async {
-    final response = await http.get(Uri.parse("$baseUrl/search?q=$query"));
+    final response = await client.get(Uri.parse("$baseUrl/search?q=$query"));
     if (response.statusCode == 200) {
       return RestaurantSearchResponse.fromJson(json.decode(response.body));
     } else {
