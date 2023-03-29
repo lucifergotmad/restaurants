@@ -9,16 +9,12 @@ import 'package:restaurants/data/result_state.dart';
 class RestaurantDetailProvider extends ChangeNotifier {
   final ApiService apiService;
   final AppDatabase database;
-  final String id;
 
   RestaurantDetailProvider({
     required this.apiService,
-    required this.id,
     required this.database,
   }) {
     restaurantDAO = database.restaurantDAO;
-    _fetchDetailRestaurant(id);
-    _checkIsRestaurantFavorite(id);
   }
 
   late final RestaurantDAO restaurantDAO;
@@ -35,6 +31,11 @@ class RestaurantDetailProvider extends ChangeNotifier {
 
   ResultState get state => _state;
 
+  void initDetail(String id) async {
+    _fetchDetailRestaurant(id);
+    _checkIsRestaurantFavorite(id);
+  }
+
   void _checkIsRestaurantFavorite(String id) async {
     final restaurant = restaurantDAO.getRestaurantById(id);
 
@@ -48,7 +49,7 @@ class RestaurantDetailProvider extends ChangeNotifier {
     });
   }
 
-  void toggleFavorite() async {
+  Future<bool> toggleFavorite() async {
     final restaurant = Restaurant(
       id: response.restaurant.id,
       city: response.restaurant.city,
@@ -60,8 +61,10 @@ class RestaurantDetailProvider extends ChangeNotifier {
 
     if (_isFavorite) {
       restaurantDAO.deleteRestaurant(restaurant);
+      return false;
     } else {
       restaurantDAO.insertRestaurant(restaurant);
+      return true;
     }
   }
 

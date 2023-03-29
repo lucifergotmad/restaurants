@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurants/data/api/api_services.dart';
 import 'package:restaurants/data/model/restaurant.dart';
 import 'package:restaurants/generated/assets.dart';
 import 'package:restaurants/pages/detail_screen.dart';
+import 'package:restaurants/provider/restaurant_detail_provider.dart';
 
 class CardItem extends StatelessWidget {
   final Restaurant restaurant;
@@ -13,6 +15,7 @@ class CardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Provider.of<RestaurantDetailProvider>(context, listen: false).initDetail(restaurant.id);
         Navigator.pushNamed(context, DetailScreen.routeName,
             arguments: restaurant.id);
       },

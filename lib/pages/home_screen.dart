@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurants/pages/favorite_screen.dart';
 import 'package:restaurants/pages/search_screen.dart';
 import 'package:restaurants/pages/setting_screen.dart';
 import 'package:restaurants/widgets/card_list.dart';
@@ -31,8 +32,8 @@ class HomeScreen extends StatelessWidget {
                           "Restaurant",
                           style: Theme.of(context)
                               .textTheme
-                              .headlineMedium
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                              .headlineSmall
+                              ?.copyWith(fontWeight: FontWeight.bold, fontSize: 26),
                         ),
                         Row(
                           children: [
@@ -45,11 +46,20 @@ class HomeScreen extends StatelessWidget {
                               },
                               icon: const Icon(
                                 Icons.search,
-                                size: 30,
+                                size: 24,
                               ),
                             ),
-                            const SizedBox(
-                              width: 8,
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  FavoriteScreen.routeName,
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.favorite,
+                                size: 24,
+                              ),
                             ),
                             IconButton(
                               onPressed: () {
@@ -60,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                               },
                               icon: const Icon(
                                 Icons.settings,
-                                size: 30,
+                                size: 24,
                               ),
                             ),
                           ],

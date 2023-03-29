@@ -9,9 +9,12 @@ import 'package:restaurants/data/api/api_services.dart';
 import 'package:restaurants/data/db/database.dart';
 import 'package:restaurants/data/preferences/preferences_helper.dart';
 import 'package:restaurants/pages/detail_screen.dart';
+import 'package:restaurants/pages/favorite_screen.dart';
 import 'package:restaurants/pages/home_screen.dart';
 import 'package:restaurants/pages/search_screen.dart';
 import 'package:restaurants/pages/setting_screen.dart';
+import 'package:restaurants/provider/restaurant_detail_provider.dart';
+import 'package:restaurants/provider/restaurant_favorite_provider.dart';
 import 'package:restaurants/provider/restaurant_provider.dart';
 import 'package:restaurants/provider/restaurant_search_provider.dart';
 import 'package:restaurants/provider/scheduling_provider.dart';
@@ -110,6 +113,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => RestaurantDetailProvider(
+          apiService: ApiService(),
+          database: database,
+        ),),
         ChangeNotifierProvider(
           create: (_) => RestaurantProvider(
             apiService: ApiService(),
@@ -128,6 +135,9 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
+        ChangeNotifierProvider(
+          create: (_) => RestaurantFavoriteProvider(database: database),
+        )
       ],
       child: MaterialApp(
         title: 'Stories App',
@@ -151,6 +161,7 @@ class _MyAppState extends State<MyApp> {
                 isOnline: _isOnline,
                 checkConnectivity: _checkConnectivity,
               ),
+          FavoriteScreen.routeName: (context) => const FavoriteScreen(),
           SettingScreen.routeName: (context) => const SettingScreen(),
           DetailScreen.routeName: (context) => DetailScreen(
                 id: ModalRoute.of(context)?.settings.arguments as String,

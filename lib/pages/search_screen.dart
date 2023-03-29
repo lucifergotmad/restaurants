@@ -28,8 +28,8 @@ class SearchScreen extends StatelessWidget {
                       "Search",
                       style: Theme.of(context)
                           .textTheme
-                          .headlineMedium
-                          ?.copyWith(fontWeight: FontWeight.bold),
+                          .headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold, fontSize: 26),
                     ),
                     const SizedBox(
                       height: 8,

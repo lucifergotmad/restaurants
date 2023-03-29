@@ -141,15 +141,17 @@ class _$RestaurantDAO extends RestaurantDAO {
   final DeletionAdapter<Restaurant> _restaurantDeletionAdapter;
 
   @override
-  Future<List<Restaurant>> getAllRestaurant() async {
-    return _queryAdapter.queryList('SELECT * FROM Restaurant',
+  Stream<List<Restaurant>> getAllRestaurant() {
+    return _queryAdapter.queryListStream('SELECT * FROM Restaurant',
         mapper: (Map<String, Object?> row) => Restaurant(
             id: row['id'] as String,
             name: row['name'] as String,
             description: row['description'] as String,
             pictureId: row['pictureId'] as String,
             city: row['city'] as String,
-            rating: row['rating'] as double));
+            rating: row['rating'] as double),
+        queryableName: 'Restaurant',
+        isView: false);
   }
 
   @override

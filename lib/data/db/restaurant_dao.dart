@@ -4,7 +4,7 @@ import 'package:restaurants/data/model/restaurant.dart';
 @dao
 abstract class RestaurantDAO {
   @Query("SELECT * FROM Restaurant")
-  Future<List<Restaurant>> getAllRestaurant();
+  Stream<List<Restaurant>> getAllRestaurant();
 
   @Query("SELECT * FROM Restaurant WHERE id = :id")
   Stream<Restaurant?> getRestaurantById(String id);
