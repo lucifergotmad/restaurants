@@ -24,8 +24,8 @@ void main() {
         json.decode(readJson("mock/restaurant_response_dummy.json")));
 
     test("should return the right response", () async {
-      when(await mockApiService.getListRestaurant())
-          .thenReturn(tRestaurantResponse);
+      when(mockApiService.getListRestaurant())
+          .thenAnswer((_) async => tRestaurantResponse);
 
       final result = await provider.fetchAllRestaurant();
 
