@@ -17,7 +17,7 @@ class SettingScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
+        padding: const EdgeInsets.only(left: 24, right: 24, top: 40),
         child: Consumer<SettingPreferencesProvider>(
           builder: (context, provider, _) {
             return Column(
@@ -48,6 +48,9 @@ class SettingScreen extends StatelessWidget {
                     title: const Text('Scheduling News'),
                     trailing: Consumer<SchedulingProvider>(
                       builder: (context, scheduled, _) {
+                        Provider.of<SettingPreferencesProvider>(context)
+                            .getDailyNotificationPreferences();
+
                         return Switch.adaptive(
                           value: provider.isDailyNotificationActive,
                           onChanged: (value) async {

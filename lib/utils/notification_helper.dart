@@ -57,12 +57,11 @@ class NotificationHelper {
 
     final restaurant = restaurantResponse
         .restaurants[_random.nextInt(restaurantResponse.count)];
-    const titleNotification = "<b>Our Recommendation</b>";
 
     await flutterLocalNotificationsPlugin.show(
       0,
-      titleNotification,
       restaurant.name,
+      restaurant.description,
       platformChannelSpecifics,
       payload: restaurant.id,
     );

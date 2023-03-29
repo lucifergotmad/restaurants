@@ -113,10 +113,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => RestaurantDetailProvider(
-          apiService: ApiService(),
-          database: database,
-        ),),
+        ChangeNotifierProvider(
+          create: (context) => RestaurantDetailProvider(
+            apiService: ApiService(),
+            database: database,
+          ),
+        ),
         ChangeNotifierProvider(
           create: (_) => RestaurantProvider(
             apiService: ApiService(),

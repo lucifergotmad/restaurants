@@ -10,7 +10,7 @@ class SettingPreferencesProvider extends ChangeNotifier {
 
   bool get isDailyNotificationActive => _isDailyNotificationActive;
 
-  void _getDailyNotificationPreferences() async {
+  void getDailyNotificationPreferences() async {
     _isDailyNotificationActive =
         await preferencesHelper.isDailyNotificationActive;
     notifyListeners();
@@ -18,6 +18,6 @@ class SettingPreferencesProvider extends ChangeNotifier {
 
   void enableDailyNews(bool value) {
     preferencesHelper.setDailyNotification(value);
-    _getDailyNotificationPreferences();
+    getDailyNotificationPreferences();
   }
 }

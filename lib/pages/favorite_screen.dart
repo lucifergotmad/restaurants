@@ -11,7 +11,7 @@ class FavoriteScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
+          padding: const EdgeInsets.only(left: 24, right: 24, top: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
