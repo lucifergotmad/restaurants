@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:restaurants/data/api/api_services.dart';
 import 'package:restaurants/pages/search_screen.dart';
-import 'package:restaurants/provider/restaurant_provider.dart';
+import 'package:restaurants/pages/setting_screen.dart';
 import 'package:restaurants/widgets/card_list.dart';
 import 'package:restaurants/widgets/error_page.dart';
 
@@ -36,18 +34,37 @@ class HomeScreen extends StatelessWidget {
                               .headlineMedium
                               ?.copyWith(fontWeight: FontWeight.bold),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              SearchScreen.routeName,
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.search,
-                            size: 30,
-                          ),
-                        ),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  SearchScreen.routeName,
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.search,
+                                size: 30,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  SettingScreen.routeName,
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.settings,
+                                size: 30,
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -63,13 +80,8 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 32,
                     ),
-                    Expanded(
-                      child: ChangeNotifierProvider<RestaurantProvider>(
-                        create: (_) => RestaurantProvider(
-                          apiService: ApiService(),
-                        ),
-                        child: const CardList(),
-                      ),
+                    const Expanded(
+                      child: CardList(),
                     ),
                   ],
                 )

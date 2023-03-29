@@ -26,7 +26,6 @@ class NetworkConnectivity {
     bool isOnline = false;
     try {
       final result = await InternetAddress.lookup('google.com');
-      print("result: $result");
       isOnline = result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } on SocketException catch (_) {
       isOnline = false;

@@ -27,7 +27,6 @@ class RestaurantDetailProvider extends ChangeNotifier {
       notifyListeners();
 
       final restaurants = await apiService.getDetailRestaurant(id);
-      print("restaurants: $restaurants");
       if (restaurants.error) {
         _state = ResultState.noData;
         notifyListeners();

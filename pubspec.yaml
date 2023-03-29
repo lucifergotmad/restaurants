@@ -39,6 +39,11 @@ dependencies:
   connectivity_plus: ^3.0.3
   provider: ^6.0.5
   http: ^0.13.5
+  android_alarm_manager_plus: ^2.1.1
+  flutter_local_notifications: ^13.0.0
+  rxdart: ^0.27.7
+  shared_preferences: ^2.0.20
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
