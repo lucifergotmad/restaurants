@@ -26,6 +26,7 @@ import 'package:restaurants/utils/network_connectivity.dart';
 import 'package:flutter/services.dart';
 import 'package:restaurants/utils/notification_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 late final AppDatabase database;
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -115,18 +116,18 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(
           create: (context) => RestaurantDetailProvider(
-            apiService: ApiService(),
+            apiService: ApiService(http.Client()),
             database: database,
           ),
         ),
         ChangeNotifierProvider(
           create: (_) => RestaurantProvider(
-            apiService: ApiService(),
+            apiService: ApiService(http.Client()),
           ),
         ),
         ChangeNotifierProvider(
           create: (_) => RestaurantSearchProvider(
-            apiService: ApiService(),
+            apiService: ApiService(http.Client()),
           ),
         ),
         ChangeNotifierProvider(create: (_) => SchedulingProvider()),
